@@ -27,7 +27,7 @@
                 <li><a href="#certification">Certification</a></li>
             </ul>
             <label for="check" class="check">
-                <input type="checkbox" id="check"/> 
+                <input type="checkbox" class="nav-checkbox" id="check"/> 
                 <span></span>
                 <span></span>
                 <span></span>
@@ -35,15 +35,51 @@
         </nav>
     </header>
 
-    <main>
-        <section class="container shadow" id="addBook">
-            <h1 class="header">Manage Your Books!✨📚</h1>
+    <main class="wrapper">
+        <section class="container shadow" id="add-book">
+            <h1 class="header text-center">Manage Your Books!✨📚</h1>
             <form class="form" action="form" action="#" id="form">
                 <div class="form-group form-title">
-                    <label for="title">Title Book</label>
-                    <input type="text" name="title" id="title" placeholder="Input your title book here">
+                    <label for="title" id="label-title">Title</label>
+                    <input type="text" name="title" id="title" placeholder="Input your title book">
                 </div>
+                <div class="form-group form-title">
+                    <label for="writer" id="label-writer">Writer</label>
+                    <input type="text" name="writer" id="writer" placeholder="Input the writer or author">
+                </div>
+                <div class="form-group form-title">
+                    <label for="sheet" id="label-sheet">Sheet</label>
+                    <input type="number" name="sheet" id="sheet" placeholder="Input the sheet">
+                </div>
+                <div class="form-group form-title">
+                    <label for="year" id="label-year">Date</label>
+                    <input type="date" name="year" id="year" placeholder="Input the date">
+                </div>
+                <div class="input-inline">
+                    <label for="finished-read" id="label-finished-read">Finished Read</label>
+                    <div class="button r" id="button-1">
+                        <input type="checkbox" class="checkboxToggleSwitch" />
+                        <div class="knobs"></div>
+                        <div class="layer"></div>
+                    </div>              
+                    <!-- <input type="checkbox" class="input-checkbox" name="finished-read" id="finished-read"> -->
+                </div>
+             <input type="submit" value="Submit" name="Submit" class="btn-submit">   
             </form>
+        </section>
+
+          <!-- MAKE TODO -->
+        <section class="container shadow">
+            <h2 class="container-header">Should Read</h2>
+            <div class="list-item" id="todos">
+            </div>
+        </section>
+
+        <!-- COMPLETED -->
+        <section class="container shadow">
+            <h2 class="container-header">Finished Read</h2>
+            <div class="list-item" id="completed-todos">
+            </div>
         </section>
     </main>
 
