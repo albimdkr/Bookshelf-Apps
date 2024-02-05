@@ -69,6 +69,27 @@ function addBook() {
   saveData();
 }
 
+function isStorageExist() /**boolean */ {
+  if (typeof Storage === indefined) {
+    alert('Browser doesnt support local stroge!');
+    return false;
+  }
+  return true;
+}
+
+
+/**
+ * @function saveData - the function mean for saving the data books to localStorage
+ */
+function saveData() {
+  if(isStorageExist()) {
+    const parsed = JSON.stringify(books);
+    localStorage.setItem(STORAGE_KEY, parsed);
+    document.dispatchEvent(new Event(SAVED_EVENT));
+  }
+}
+
+
 
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
