@@ -26,7 +26,6 @@ function generateId (){
   return +new Date();
 }
 
-
 /**
  * generate Book Object
  * @param {int} id 
@@ -49,6 +48,31 @@ function generateBookObject(id, title, author, sheet, year, isComplete) {
 }
 
 /**
+ * @function isStorageExist - this function mean the to check the localStorage are support or not
+ * @returns {boolean}
+ */
+function isStorageExist() /**boolean */ {
+  if (typeof Storage === undefined) {
+    alert('Browser doesnt support local stroge!');
+    return false;
+  }
+  return true;
+}
+
+/**
+ * @function saveData - the function mean for saving the data books to localStorage
+ * @see {STORAGE_KEY}
+ * @see {SAVED_EVENT}
+ */
+function saveData() {
+  if(isStorageExist()) {
+    const parsed = JSON.stringify(books);
+    localStorage.setItem(STORAGE_KEY, parsed);
+    document.dispatchEvent(new Event(SAVED_EVENT));
+  }
+}
+
+/**
  * @function makeBookItem - this mean to create the element html dynamic
  */
 function makeBookItem(bookObject) {
@@ -57,13 +81,13 @@ function makeBookItem(bookObject) {
   const textTitle = document.createElement('h1');
   textTitle.innerText = title;
 
-  const textAuthor = document.createElement('h4');
+  const textAuthor = document.createElement('p');
   textAuthor.innerText = author;
 
-  const numberSheet = document.createElement('h4');
+  const numberSheet = document.createElement('p');
   numberSheet.innerText = sheet;
 
-  const numberYear = document.createElement('h4');
+  const numberYear = document.createElement('p');
   numberYear.innerText = year;
 
   const wripperSectionBooks = document.createElement('div');
@@ -103,9 +127,9 @@ function addBook() {
   const numberYear = document.getElementById('year').value;
   const isComplete = document.getElementById('completeCheckbox').value;
 
-  const generateId = generateId();
+  const generatedID = generateId();
   const bookObject = generateBookObject(
-    generateId,
+    generatedID,
     textTitle,
     textAuthor,
     numberSheet,
@@ -115,29 +139,6 @@ function addBook() {
   books.push(bookObject);
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
-}
-
-/**
- * @function isStorageExist - this function mean the to check the localStorage are support or not
- * @returns {boolean}
- */
-function isStorageExist() /**boolean */ {
-  if (typeof Storage === undefined) {
-    alert('Browser doesnt support local stroge!');
-    return false;
-  }
-  return true;
-}
-
-/**
- * @function saveData - the function mean for saving the data books to localStorage
- */
-function saveData() {
-  if(isStorageExist()) {
-    const parsed = JSON.stringify(books);
-    localStorage.setItem(STORAGE_KEY, parsed);
-    document.dispatchEvent(new Event(SAVED_EVENT));
-  }
 }
 
 // DOMContentLoaded
@@ -213,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 document.addEventListener(RENDER_EVENT, () => {
   const uncompletedBOOKList = document.getElementById('books');
-  const listCompleted = document.getElementById('completed-books');
+  const listCompleted = document.getElementById('complete-books');
 
   uncompletedBOOKList.innerHTML = '';
   listCompleted.innerHTML = '';
@@ -230,12 +231,6 @@ document.addEventListener(RENDER_EVENT, () => {
     }
   }
 });
-
-
-
-
-
-
 
 /**
  * Toggle slide class in the navigation menu
