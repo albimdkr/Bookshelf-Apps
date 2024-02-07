@@ -122,7 +122,7 @@ function addBook() {
  * @returns {boolean}
  */
 function isStorageExist() /**boolean */ {
-  if (typeof Storage === indefined) {
+  if (typeof Storage === undefined) {
     alert('Browser doesnt support local stroge!');
     return false;
   }
