@@ -48,15 +48,21 @@ function generateBookObject(id, title, author, sheet, year, isComplete) {
 }
 
 /**
- * @function findBook - that mean to find book from bookItem
+ * @function findBook - this mean for search book from bookId
+ * @param {id} bookId 
+ * @returns 
  */
 function findBook(bookId) {
-  for (const bookItem of books){
-    if (bookItem.id === bookId){
-      return bookItem;
-    }
-  }
-  return null;
+  return books.find(bookItem => bookItem.id === bookId) || null;
+}
+
+/**
+ * @function findBookIndex - this mean for find book index from id
+ * @param {id} bookId 
+ * @returns 
+ */
+function findBookIndex(bookId) {
+  return books.findIndex(book => book.id === bookId);
 }
 
 /**
@@ -64,11 +70,7 @@ function findBook(bookId) {
  * @returns {boolean}
  */
 function isStorageExist() /**boolean */ {
-  if (typeof Storage === undefined) {
-    alert('Browser doesnt support local stroge!');
-    return false;
-  }
-  return true;
+  return typeof Storage !== 'undefined' ? true : (alert(messageFailure), false);
 }
 
 /**
@@ -77,11 +79,7 @@ function isStorageExist() /**boolean */ {
  * @see {SAVED_EVENT}
  */
 function saveData() {
-  if(isStorageExist()) {
-    const parsed = JSON.stringify(books);
-    localStorage.setItem(STORAGE_KEY, parsed);
-    document.dispatchEvent(new Event(SAVED_EVENT));
-  }
+  isStorageExist() && (localStorage.setItem(STORAGE_KEY, JSON.stringify(books)), document.dispatchEvent(new Event(SAVED_EVENT)));
 }
 
 
@@ -168,13 +166,6 @@ function addBook() {
   books.push(bookObject);
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
-}
-
-function addBookComplete(bookId) {
-  const bookTarget = findBook(bookId);
-  if (bookTarget == null) {
-    
-  }
 }
 
 // DOMContentLoaded
