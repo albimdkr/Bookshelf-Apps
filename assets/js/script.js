@@ -82,7 +82,6 @@ function saveData() {
   isStorageExist() && (localStorage.setItem(STORAGE_KEY, JSON.stringify(books)), document.dispatchEvent(new Event(SAVED_EVENT)));
 }
 
-
 /**
  * @function loadDataFromStorage - that mean loaded Data from localStorage to push render in book
  * @see {RENDER_EVENT}
@@ -138,7 +137,7 @@ function makeBookItem(bookObject) {
   } else {
     const checkButton = document.createElement('button');
     checkButton.classList.add('check-button');
-    checkButton.addEventListener('click', () => { addBookToCompleted(id) });
+    checkButton.addEventListener('click', () => { addBookToCompleted(id); });
     wrapper.append(checkButton);
   }
   return wrapper;
@@ -173,7 +172,7 @@ function addBook() {
  * @param {id} bookId 
  * @returns 
  */
-function addBookComplete(bookId) {
+function addBookToCompleted(bookId) {
   const bookTarget = findBook(bookId);
   if(bookTarget == null) return;
   bookTarget.isComplete = true;
@@ -271,6 +270,8 @@ document.addEventListener('DOMContentLoaded', () => {
       break;
     }
   });
+  // Render Data From Local Storage
+  isStorageExist() && loadDataFromStorage();
 });
 
 /**
