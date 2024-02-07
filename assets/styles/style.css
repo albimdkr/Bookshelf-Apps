@@ -285,7 +285,7 @@ main .container {
     margin-top: 5px;
 }
 
-.form {
+.input-form {
     border: 1px solid red;
     display: flex;
     padding: 16px;
@@ -320,7 +320,7 @@ main .container {
     font-size: 18px;
 } */
 
-.input-wrapper > .form > .form-group > input {
+.input-wrapper > .input-form > .form-group > input {
     font-family: Josefin Sans, sans-serif;
     background: var(--white);
     border: 2px solid var(--primary);
@@ -406,7 +406,7 @@ main .container {
   border: 1px solid var(--primary);
 }
 
-#button-1 .knobs:before {
+#completeCheckbox .knobs:before {
   content: "NO";
   position: absolute;
   top: 4px;
@@ -424,21 +424,21 @@ main .container {
   transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-#button-1 .checkboxToggleSwitch:checked + .knobs:before {
+#completeCheckbox .checkboxToggleSwitch:checked + .knobs:before {
   content: "YES";
   color: var(--primary);
   left: 42px;
   background-color: var(--white);
 }
 
-#button-1 .checkboxToggleSwitch:checked ~ .layer {
+#completeCheckbox .checkboxToggleSwitch:checked ~ .layer {
   background-color: var(--primary);
   border: 1px solid var(--white);
 }
 
-#button-1 .knobs,
-#button-1 .knobs:before,
-#button-1 .layer {
+#completeCheckbox .knobs,
+#completeCheckbox .knobs:before,
+#completeCheckbox .layer {
   transition: 0.3s ease all;
 }
 
@@ -495,7 +495,7 @@ input[type=text], input[type=number], .btn-submit:focus {
 .check-button {
     width: 40px;
     height: 40px;
-    background: url('../assets/finished-task-icon');
+    background: url('../img/finished-task-icon.svg');
     background-size: contain;
     margin-left: auto;
     cursor: pointer;
@@ -510,7 +510,7 @@ input[type=text], input[type=number], .btn-submit:focus {
 .trash-button {
     width: 40px;
     height: 40px;
-    background: url('../assets/delete-icon.svg');
+    background: url('../img/delete-icon.svg');
     background-size: contain;
     margin-left: 16px;
     cursor: pointer;
@@ -518,14 +518,14 @@ input[type=text], input[type=number], .btn-submit:focus {
 }
 
 /* .trash-button:hover {
-    background: url('../assets/delete-icon.svg');
+    background: url('../img/delete-icon.svg');
     background-size: contain;
 } */
 
 .undo-button {
     width: 40px;
     height: 40px;
-    background: url('../assets/undo-icon.svg');
+    background: url('../img/undo-icon.svg');
     background-size: contain;
     margin-left: auto;
     cursor: pointer;
@@ -533,7 +533,7 @@ input[type=text], input[type=number], .btn-submit:focus {
 }
 
 /* .undo-button:hover {
-    background: url('../assets/undo-icon.svg');
+    background: url('../img/undo-icon.svg');
     background-size: contain;
 } */
 
