@@ -168,6 +168,45 @@ function addBook() {
   saveData();
 }
 
+/**
+ * @function addBookComplete - this mean to add book when complete to section finished read
+ * @param {id} bookId 
+ * @returns 
+ */
+function addBookComplete(bookId) {
+  const bookTarget = findBook(bookId);
+  if(bookTarget == null) return;
+  bookTarget.isComplete = true;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
+}
+
+/**
+ * @function removeBookFromCompleted - this mean for remove book from section finished
+ * @param {id} bookId 
+ * @returns 
+ */
+function removeBookFromCompleted(bookId) {
+  const bookTarget = findBook(bookId);
+  if (bookTarget === -1) return;
+  books.splice(bookTarget, 1);
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
+}
+
+/**
+ * @function undoBookFromCompleted - this mean action undo from Finished to should Read
+ * @param {id} bookId 
+ * @returns 
+ */
+function undoBookFromCompleted(bookId) {
+  const bookTarget = findBook(bookId);
+  if (bookTarget == null) return;
+  bookTarget.isComplete = false;
+  document.dispatchEvent(new Event(RENDER_EVENT));
+  saveData();
+}
+
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const submitInputForm /* HTMLFormElement*/  = document.getElementById('inputBook');
