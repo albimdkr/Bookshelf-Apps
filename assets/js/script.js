@@ -47,6 +47,7 @@ function generateBookObject(id, title, author, sheet, year, isComplete) {
   };
 }
 
+
 /**
  * @function isStorageExist - this function mean the to check the localStorage are support or not
  * @returns {boolean}
@@ -70,6 +71,23 @@ function saveData() {
     localStorage.setItem(STORAGE_KEY, parsed);
     document.dispatchEvent(new Event(SAVED_EVENT));
   }
+}
+
+
+/**
+ * @function loadDataFromStorage - that mean loaded Data from localStorage to push render in book
+ * @see {RENDER_EVENT}
+ */
+function loadDataFromStorage() {
+  const serializedData = localStorage.getItem(STORAGE_KEY);
+  let data = JSON.parse(serializedData);
+
+  if (data !== null) {
+    for (const book of data){
+      books.push(book);
+    }
+  }
+  document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
 /**
@@ -141,12 +159,17 @@ function addBook() {
   saveData();
 }
 
+function addBookComplete(bookId) {
+  const bookTarget = findBook(bookId);
+  if (bookTarget == null) {
+    
+  }
+}
+
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const submitInputForm /* HTMLFormElement*/  = document.getElementById('inputBook');
-
-  /**
-   * 
+  /** 
    * @param {string} - title,author, sheet, year validation 
    * @returns {boolean} - give back value boolean is empty or no 
    */
