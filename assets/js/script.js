@@ -48,6 +48,53 @@ function generateBookObject(id, title, author, sheet, year, isComplete) {
   };
 }
 
+
+function makeBookItem(bookObject) {
+  const {id, title, author, sheet, year, isComplete } = bookObject;
+
+  const textTitle = document.createElement('h1');
+  textTitle.innerText = title;
+
+  const textAuthor = document.createElement('h4');
+  textAuthor.innerText = author;
+
+  const numberSheet = document.createElement('h4');
+  numberSheet.innerText = sheet;
+
+  const numberYear = document.createElement('h4');
+  numberYear.innerText = year;
+
+  const wripperSectionBooks = document.createElement('div');
+  wripperSectionBooks.classList.add('inner');
+  wripperSectionBooks.append(textTitle, textAuthor, numberSheet, numberYear);
+  
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('item', 'shadow');
+  wrapper.append(wripperSectionBooks);
+  wrapper.setAttribute('id', `book-${id}`);
+  
+  if (isComplete){
+    const undoButton = document.createElement('button');
+    undoButton.classList.add('undo-button');
+    undoButton.addEventListener('click', () => undoBookFromCompleted(id));
+
+    const trashButton = document.createElement('button');
+    trashButton.classList.add('trash-button');
+    trashButton.addEventListener('click', () => { removeBookFromCompleted(id) });
+    wrapper.append(undoButton, trashButton);
+  } else {
+    const checkButton = document.createElement('button');
+    checkButton.classList.add('check-button');
+    checkButton.addEventListener('click', () => { addBookToCompleted(id) });
+    wrapper.append(checkButton);
+  }
+  return wrapper;
+}
+
+
+/**
+ * @function addBook - mean the book data saved to array books (database)
+ */
 function addBook() {
   const textTitle = document.getElementById('title').value;
   const textAuthor = document.getElementById('author').value;
@@ -69,6 +116,10 @@ function addBook() {
   saveData();
 }
 
+/**
+ * @function isStorageExist - this function mean the to check the localStorage are support or not
+ * @returns {boolean}
+ */
 function isStorageExist() /**boolean */ {
   if (typeof Storage === indefined) {
     alert('Browser doesnt support local stroge!');
@@ -76,7 +127,6 @@ function isStorageExist() /**boolean */ {
   }
   return true;
 }
-
 
 /**
  * @function saveData - the function mean for saving the data books to localStorage
@@ -88,6 +138,8 @@ function saveData() {
     document.dispatchEvent(new Event(SAVED_EVENT));
   }
 }
+
+
 
 
 
@@ -122,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   function handleValidationFailure(messageFailure){
     const inputElement = document.activeElement;
-    inputElement.style.border = '1px silid red';
+    inputElement.style.border = '1px solid red';
     // custome alert
   }
   
