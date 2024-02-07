@@ -47,6 +47,17 @@ function generateBookObject(id, title, author, sheet, year, isComplete) {
   };
 }
 
+/**
+ * @function findBook - that mean to find book from bookItem
+ */
+function findBook(bookId) {
+  for (const bookItem of books){
+    if (bookItem.id === bookId){
+      return bookItem;
+    }
+  }
+  return null;
+}
 
 /**
  * @function isStorageExist - this function mean the to check the localStorage are support or not
