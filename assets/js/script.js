@@ -48,7 +48,9 @@ function generateBookObject(id, title, author, sheet, year, isComplete) {
   };
 }
 
-
+/**
+ * @function makeBookItem - this mean to create the element html dynamic
+ */
 function makeBookItem(bookObject) {
   const {id, title, author, sheet, year, isComplete } = bookObject;
 
@@ -76,7 +78,7 @@ function makeBookItem(bookObject) {
   if (isComplete){
     const undoButton = document.createElement('button');
     undoButton.classList.add('undo-button');
-    undoButton.addEventListener('click', () => undoBookFromCompleted(id));
+    undoButton.addEventListener('click', () => { undoBookFromCompleted(id) });
 
     const trashButton = document.createElement('button');
     trashButton.classList.add('trash-button');
@@ -90,7 +92,6 @@ function makeBookItem(bookObject) {
   }
   return wrapper;
 }
-
 
 /**
  * @function addBook - mean the book data saved to array books (database)
@@ -138,10 +139,6 @@ function saveData() {
     document.dispatchEvent(new Event(SAVED_EVENT));
   }
 }
-
-
-
-
 
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -209,8 +206,31 @@ document.addEventListener('DOMContentLoaded', () => {
       break;
     }
   });
-
 });
+
+/**
+ * COSTUME EVENT: @see {RENDER_EVENT}
+ */
+document.addEventListener(RENDER_EVENT, () => {
+  const uncompletedBOOKList = document.getElementById('books');
+  const listCompleted = document.getElementById('completed-books');
+
+  uncompletedBOOKList.innerHTML = '';
+  listCompleted.innerHTML = '';
+
+  /**
+   * this mean for list categorize if book completed or not
+   */
+  for (const bookItem of books){
+    const bookElement = makeBookItem(bookItem);
+    if (bookItem.isComplete){
+      listCompleted.append(bookElement);
+    } else {
+      uncompletedBOOKList.append(bookElement);
+    }
+  }
+});
+
 
 
 
