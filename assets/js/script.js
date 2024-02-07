@@ -101,7 +101,7 @@ function addBook() {
   const textAuthor = document.getElementById('author').value;
   const numberSheet = document.getElementById('sheet').value;
   const numberYear = document.getElementById('year').value;
-  const isComplete = document.getElementById('completedCheckbox').value;
+  const isComplete = document.getElementById('completeCheckbox').value;
 
   const generateId = generateId();
   const bookObject = generateBookObject(
