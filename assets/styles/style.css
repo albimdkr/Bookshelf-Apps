@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600&family=Manrope:wght@300;600&family=Poppins:wght@300;600&display=swap');
 
-/* Set Global */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
 /* Initialization Colors */
 :root {
     --primary : #186F65;
@@ -17,8 +9,18 @@
     --black: #313131;
     --gray: #E5E1DA;
 }
+/* Set Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
 
 body {
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='20' height='20' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M 10,-2.55e-7 V 20 Z M -1.1677362e-8,10 H 20 Z'  stroke-width='0.5' stroke='hsla(173, 64%, 26%, 0.09)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
     height: 100vh;
     overflow-x: hidden;
     font-family: 'Manrope', sans-serif;
@@ -49,6 +51,11 @@ nav {
 
 h2 {
     color: var(--black);
+}
+
+.title-header {
+    font-size: 1.1em;
+    color: var(--white);
 }
 
 nav ul {
@@ -112,7 +119,7 @@ nav ul li ul.dropdown {
     width: 100%;
     position: fixed;
     top: 10px;
-    z-index: 999;
+    z-index: 100;
     display: none;
 }
 
@@ -238,11 +245,19 @@ main .container {
     height: fit-content;
 }
 
+h1 .header {
+    color: var(--primary);
+}
+
+.container-header{
+    color: var(--primary);
+}
+
 .input-wrapper {
     max-width: 1200vw;
     border-radius: 8px;
     margin: 16px;
-    background: #F8F9FA;
+    background: #f0f4f3;
     padding: 16px;
     flex-grow: 1;
     height: fit-content;
@@ -416,6 +431,7 @@ main .container {
 }
 
 .btn-submit {
+    background: var(--white);
     width: fit-content;
     font-family: Manrope, sans-serif;
     border-radius: 8px;
@@ -435,6 +451,7 @@ main .container {
 }
 
 .btn-search {
+    background: var(--white);
     margin: 2% 0%;
     font-family: Manrope, sans-serif;
     border-radius: 8px;
@@ -528,7 +545,6 @@ input[type=text], input[type=number], .btn-submit:focus {
     max-width: 1200vw;
     border-radius: 8px;
     margin: auto;
-    background: #F8F9FA;
     padding: 18px;
     flex-grow: 1;
     height: fit-content;
@@ -563,7 +579,7 @@ input[type=text], input[type=number], .btn-submit:focus {
     max-width: 1200vw;
     border-radius: 8px;
     margin: 16px;
-    background: #F8F9FA;
+    background: #f0f4f3;
     padding: 16px;
     flex-grow: 1;
     height: fit-content;
@@ -670,6 +686,24 @@ footer a:hover {
     justify-content: center;
     font-size: 1em;
 }
+
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: #186F65;
+    pointer-events: none;
+    opacity: 0.7; /* Opacity yang tipis */
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    z-index: 10000; /* Pastikan cursor ada di atas elemen lain */
+    max-width: 1200vw;
+}
+
+
 
 /* Breakpoint: Tablet */
 @media (max-width: 768px){
@@ -928,7 +962,7 @@ footer a:hover {
         width: 10%;
         position: fixed;
         top: 10px;
-        z-index: 999;
+        z-index: 100;
         display: none;
     }
     
