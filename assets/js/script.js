@@ -298,11 +298,24 @@ function addBookToCompleted(bookId) {
  * @returns
  */
 function removeBookFromCompleted(bookId) {
-  const bookTarget = findBook(bookId);
-  if (bookTarget === -1) return;
-  books.splice(bookTarget, 1);
-  document.dispatchEvent(new Event(RENDER_EVENT));
-  saveData();
+  Swal.fire({
+    title: 'Delete this book?',
+    text: 'Are you sure you want to delete this book?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#FF004D',
+    cancelButtonColor: '#525CEB',
+    confirmButtonText: 'Yes, delete it',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const bookIndex = findBookIndex(bookId);
+      if (bookIndex !== -1) {
+        books.splice(bookIndex, 1);
+        document.dispatchEvent(new Event(RENDER_EVENT));
+        saveData();
+      }
+    }
+  });
 }
 
 /**
@@ -393,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener(SAVED_EVENT, () => {
-  handleValidationSuccess('add book success!');
+  handleValidationSuccess('your action successed!');
 });
 
 function handleValidationSuccess(messageSuccesed) {
@@ -401,6 +414,7 @@ function handleValidationSuccess(messageSuccesed) {
     title: 'Success',
     text: messageSuccesed,
     icon: 'success',
+    confirmButtonColor: '#186F65',
   });
 }
 
@@ -436,3 +450,14 @@ const nav = document.querySelector('nav ul');
 menuToggle.addEventListener('click', function () {
   nav.classList.toggle('slide');
 });
+
+// Cursor
+document.addEventListener('DOMContentLoaded', function () {
+  const cursor = document.querySelector('.cursor');
+
+  document.addEventListener('mousemove', function (e) {
+    cursor.style.top = e.pageY + 'px';
+    cursor.style.left = e.pageX + 'px';
+  });
+});
+
