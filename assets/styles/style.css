@@ -21,19 +21,17 @@
 body {
     height: 100vh;
     overflow-x: hidden;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Manrope', sans-serif;
     font-family: 'Manrope', sans-serif;
     font-family: 'Poppins', sans-serif;
 }
 
 header {
-    /* display: inline; */
     position: fixed;
     top:0;
     width: 100%;
     background-color: var(--white);
     z-index: 999;
-    /* border: 1px solid #186F65; */
 }
 
 nav {
@@ -146,7 +144,7 @@ nav ul li a {
   }
   
 .check span{
-    background: var(--shadow);
+    background: var(--black);
     height: 4px;
     margin: 4px 0;
     z-index: 2;
@@ -175,18 +173,6 @@ nav ul li a {
     width:75%;
 }
 
-/* input[type="checkbox"]{
-    opacity: 2;
-    position: absolute;
-    height: 80px;
-    width: 80px;
-    cursor: pointer;
-    z-index: 4;
-    top: 0;
-    left: -100;
-    right: 10;
-} */
-
 .nav-checkbox{
     opacity: 0;
     position: absolute;
@@ -201,23 +187,23 @@ nav ul li a {
       
 .nav-checkbox:checked ~ span:nth-of-type(1){
     transform-origin:bottom;
+    background-color: var(--white);
     transform:rotatez(45deg) translate(-12px,15px);
     -webkit-transform:rotatez(45deg) translate(-12px,15px);
     -moz-transform:rotatez(45deg) translate(-12px,15px);
     -ms-transform:rotatez(45deg) translate(-12px,15px);
     -o-transform:rotatez(45deg) translate(-12px,15px);
-    background-color: var(--white);
 }
    
    
 .nav-checkbox:checked ~ span:nth-of-type(2){
     transform-origin:top;
+    background-color: var(--white);
     transform:rotatez(-45deg);
     -webkit-transform:rotatez(-45deg);
     -moz-transform:rotatez(-45deg);
     -ms-transform:rotatez(-45deg);
     -o-transform:rotatez(-45deg);
-    background-color: var(--white);
 }
    
 .nav-checkbox:checked ~ span:nth-of-type(3){
@@ -239,7 +225,6 @@ main {
     flex-direction: column;
     align-item: center;
     margin: 10%;
-    border: 5px solid var(--primary);
     border-radius: 2%;
 }
 
@@ -286,7 +271,6 @@ main .container {
 }
 
 .input-form {
-    border: 1px solid red;
     display: flex;
     padding: 16px;
     flex-direction: column;
@@ -309,19 +293,8 @@ main .container {
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05), 0 15px 40px rgba(166, 173, 201, .2);
 }
 
-/* input[type=text], input[type=number], input[type=date] {
-    font-family: Josefin Sans, sans-serif;
-    background: var(--white);
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-    padding: 16px;
-    box-sizing: border-box;
-    margin-bottom: 8px;
-    font-size: 18px;
-} */
-
 .input-wrapper > .input-form > .form-group > input {
-    font-family: Josefin Sans, sans-serif;
+    font-family: Manrope, sans-serif;
     background: var(--white);
     border: 2px solid var(--primary);
     border-radius: 8px;
@@ -442,14 +415,9 @@ main .container {
   transition: 0.3s ease all;
 }
 
-/* .input-checkbox {
-    height: 20px;
-    width: 20px;
-} */
-
 .btn-submit {
     width: fit-content;
-    font-family: Josefin Sans, sans-serif;
+    font-family: Manrope, sans-serif;
     border-radius: 8px;
     padding: 12px 24px;
     border: 2px solid var(--primary);
@@ -468,7 +436,7 @@ main .container {
 
 .btn-search {
     margin: 2% 0%;
-    font-family: Josefin Sans, sans-serif;
+    font-family: Manrope, sans-serif;
     border-radius: 8px;
     padding: 13px 20px;
     border: 2px solid var(--primary);
@@ -502,10 +470,10 @@ input[type=text], input[type=number], .btn-submit:focus {
     border: none;
 }
 
-/* .check-button:hover {
-    background: url('../assets/finished-task-icon');
+.check-button:hover {
+    background: url('../img/color/finished-task-icon-color.svg');
     background-size: contain;
-} */
+}
 
 .edit-button {
     width: 40px;
@@ -515,6 +483,11 @@ input[type=text], input[type=number], .btn-submit:focus {
     margin-left: auto;
     cursor: pointer;
     border: none;
+}
+
+.edit-button:hover {
+    background: url('../img/color/edit-icon-color.svg');
+    background-size: contain;
 }
 
 .trash-button {
@@ -527,10 +500,10 @@ input[type=text], input[type=number], .btn-submit:focus {
     border: none;
 }
 
-/* .trash-button:hover {
-    background: url('../img/delete-icon.svg');
+.trash-button:hover {
+    background: url('../img/color/delete-icon-color.svg');
     background-size: contain;
-} */
+}
 
 .undo-button {
     width: 40px;
@@ -542,15 +515,14 @@ input[type=text], input[type=number], .btn-submit:focus {
     border: none;
 }
 
-/* .undo-button:hover {
-    background: url('../img/undo-icon.svg');
+.undo-button:hover {
+    background: url('../img/color/undo-icon-color.svg');
     background-size: contain;
-} */
+}
 
 .check-button:focus, .trash-button {
     outline: none;
 }
-
 
 .search-wrapper {
     max-width: 1200vw;
@@ -567,9 +539,6 @@ input[type=text], input[type=number], .btn-submit:focus {
 }
 
 .form-search {
-    /* display: grid; */
-    /* grid-template-columns: auto 1fr 0.5fr; */
-    border: 1px solid red;
     display: flex;
     align-items: center;
     padding: 16px;
@@ -578,7 +547,7 @@ input[type=text], input[type=number], .btn-submit:focus {
 }
 
 .search-wrapper > form > input[type=text] {
-    font-family: Josefin Sans, sans-serif;
+    font-family: Manrope, sans-serif;
     background: var(--white);
     border: 2px solid var(--primary);
     border-radius: 8px;
@@ -715,21 +684,21 @@ footer a:hover {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background-color: var(--secondary);
-        height: 80vh;
-        width: 100%;
+        background-color: var(--primary);
+        height: 100vh;
+        max-width: 100%;
         position: absolute;
         z-index: 2;
-        top: 0px;
+        top: 100px;
         left: 0px;
         opacity: 0;
         padding: 0px;
-        border-radius: 0%;
-        transform: translateY(-100%);
-        -webkit-transform: translateY(-100%);
-        -moz-transform: translateY(-100%);
-        -ms-transform: translateY(-100%);
-        -o-transform: translateY(-100%);
+        border-radius: 10px 10px 0px 0px;
+        transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        -o-transform: translateY(100%);
         transition: all 0.40s;
         -webkit-transition: all 0.40s;
         -moz-transition: all 0.40s;
@@ -738,7 +707,7 @@ footer a:hover {
     }
 
     nav ul li a {
-        color: var(--black);
+        color: var(--white);
         transition: all 0.10s;
     }
 
@@ -759,26 +728,54 @@ footer a:hover {
         -o-transform: translateX(0);
     }
 
-
+    .nav-checkbox:checked ~ span:nth-of-type(1){
+        transform-origin:bottom;
+        background-color: var(--primary);
+        transform:rotatez(45deg) translate(-12px,15px);
+        -webkit-transform:rotatez(45deg) translate(-12px,15px);
+        -moz-transform:rotatez(45deg) translate(-12px,15px);
+        -ms-transform:rotatez(45deg) translate(-12px,15px);
+        -o-transform:rotatez(45deg) translate(-12px,15px);
+    }
+   
+   
+    .nav-checkbox:checked ~ span:nth-of-type(2){
+        transform-origin:top;
+        background-color: var(--primary);
+        transform:rotatez(-45deg);
+        -webkit-transform:rotatez(-45deg);
+        -moz-transform:rotatez(-45deg);
+        -ms-transform:rotatez(-45deg);
+        -o-transform:rotatez(-45deg);
+    }
     
+    .nav-checkbox:checked ~ span:nth-of-type(3){
+        transform-origin:bottom;
+        width:55%;
+        background-color: var(--primary);
+        transform: translate(0px,-5px) rotatez(45deg);
+        -webkit-transform: translate(0px,-5px) rotatez(45deg);
+        -moz-transform: translate(0px,-5px) rotatez(45deg);
+        -ms-transform: translate(0px,-5px) rotatez(45deg);
+        -o-transform: translate(0px,-5px) rotatez(45deg);
+    }
 
-.search-wrapper > form > input[type=text] {
-    font-family: Josefin Sans, sans-serif;
-    background: var(--white);
-    border: 2px solid var(--primary);
-    border-radius: 8px;
-    padding: 16px;
-    box-sizing: border-box;
-    margin-bottom: 8px;
-    font-size: 18px;
-    width: 100%;
-    align-item: center;
-}
+    .search-wrapper > form > input[type=text] {
+        font-family: Manrope, sans-serif;
+        background: var(--white);
+        border: 2px solid var(--primary);
+        border-radius: 8px;
+        padding: 16px;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+        font-size: 18px;
+        width: 100%;
+        align-item: center;
+    }
 
      /* FOOTER =================== */
     footer {
         background-color: var(--white);
-        /* border-radius: 25px 25px 0 0; */
         margin: 5em auto 5em;
         width: 100%;
     }
@@ -891,22 +888,22 @@ footer a:hover {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background-color: var(--secondary);
-        height: 80vh;
+        background-color: var(--primary);
+        height: 85vh;
         max-width: 100%;
         position: absolute;
         z-index: 2;
         margin: auto;
-        top: 0px;
+        top: 100px;
         left: 0px;
         opacity: 0;
         padding: 0px;
-        border-radius: 0%;
-        transform: translateY(-100%);
-        -webkit-transform: translateY(-100%);
-        -moz-transform: translateY(-100%);
-        -ms-transform: translateY(-100%);
-        -o-transform: translateY(-100%);
+        border-radius: 25px 25px 0px 0px;
+        transform: translateY(100%);
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        -o-transform: translateY(100%);
         transition: all 0.40s;
         -webkit-transition: all 0.40s;
         -moz-transition: all 0.40s;
@@ -915,7 +912,7 @@ footer a:hover {
       }
   
       nav ul li a {
-          color: var(--black);
+          color: var(--white);
           transition: all 0.10s;
       }
   
@@ -956,9 +953,6 @@ footer a:hover {
       }
 
       .form-search {
-            /* display: grid; */
-            /* grid-template-columns: auto 1fr 0.5fr; */
-            border: 1px solid red;
             display: flex;
             align-items: center;
             grid-gap: 5px;
@@ -969,7 +963,7 @@ footer a:hover {
         }
 
       .search-wrapper > form > input[type=text] {
-            font-family: Josefin Sans, sans-serif;
+            font-family: Manrope, sans-serif;
             background: var(--white);
             border: 2px solid var(--primary);
             border-radius: 8px;
@@ -988,6 +982,7 @@ footer a:hover {
             border-radius: 8px;
             padding: 13px 25px;
             border: 2px solid var(--primary);
+            background: url('../img/search-icon.svg.svg');
             color: black;
             font-size: 24px;
             margin-top: auto;
@@ -995,10 +990,6 @@ footer a:hover {
             cursor: pointer;
             width: 100%;
         }
-
-
-
-      }
       
        /* FOOTER =================== */
       footer {
