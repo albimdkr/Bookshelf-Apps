@@ -159,7 +159,7 @@ function addBook() {
   const textAuthor = document.getElementById('author').value;
   const numberSheet = document.getElementById('sheet').value;
   const numberYear = document.getElementById('year').value;
-  const isComplete = document.getElementById('completeCheckbox').value;
+  const isComplete = document.getElementById('completeCheckbox').checked;
 
   const generatedID = generateId();
   const bookObject = generateBookObject(
@@ -170,6 +170,7 @@ function addBook() {
     numberYear,
     isComplete
   );
+  
   books.push(bookObject);
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
@@ -245,7 +246,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function handleValidationFailure(messageFailure) {
     const inputElement = document.activeElement;
     inputElement.style.border = '1px solid red';
-    // custome alert
+    Swal.fire({
+      title: 'Save Failed!',
+      text: messageFailure,
+      icon: 'error',
+    });
   }
 
   submitInputForm.addEventListener('submit', (event) => {
@@ -253,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formAuthor = document.getElementById('author').value;
     const formSheet = document.getElementById('sheet').value;
     const formYear = document.getElementById('year').value;
+    
 
     /**
      * @param {boolean} - validation switchcase
