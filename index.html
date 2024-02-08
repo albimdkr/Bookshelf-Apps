@@ -57,29 +57,32 @@
                 </div>
                 <div class="input-inline">
                     <label for="finished-read" id="label-finished-read">Finished Read</label>
-                    <div class="button r" id="completeCheckbox">
-                        <input type="checkbox" class="checkboxToggleSwitch" />
+                    <div class="button r" id="wrapper-checkbox">
+                        <input type="checkbox" id="completeCheckbox" class="checkboxToggleSwitch" />
                         <div class="knobs"></div>
                         <div class="layer"></div>
                     </div>              
-                    <!-- <input type="checkbox" class="input-checkbox" name="finished-read" id="finished-read"> -->
                 </div>
-             <input type="submit" value="Save" name="Submit" class="btn-submit">   
+            <button type="submit" class="btn-submit">
+                <!-- <i class='bx bxs-plus-square'></i> -->
+                Save 
+            </button>
             </form>
         </section>
 
 
          <!-- SEARCHING -->
         <section class="search-wrapper shadow">
-            <!-- <h2 class="container-header text-center">Search your book</h2> -->
+            <h2 class="container-header text-center">Search your book</h2>
             <form action="#" class="form-search" id="searchBook">
                 <input type="text" name="search" id="search" placeholder="Search your book">
-                <input type="submit" value="Search" name="Submit" class="btn-search">
-                <!-- <div class="form-search form-title"></div> -->
+                <input type="submit" value="Search" name="Submit" id="submitSearch" class="btn-search">
             </form>
             <div class="list-item" id="search">
             </div>
         </section>
+
+        <!-- <div id="searchResults"></div> -->
 
 
           <!-- MAKE BOOK -->
@@ -127,4 +130,5 @@
 
 </body>
 <script src="/assets/js/script.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
