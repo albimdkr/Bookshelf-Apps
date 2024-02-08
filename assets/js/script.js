@@ -130,23 +130,21 @@ function makeBookItem(bookObject) {
   if (isComplete) {
     const undoButton = document.createElement('button');
     undoButton.classList.add('undo-button');
-    undoButton.addEventListener('click', () => {
-      undoBookFromCompleted(id);
-    });
+    undoButton.addEventListener('click', () => { undoBookFromCompleted(id) });
 
     const trashButton = document.createElement('button');
     trashButton.classList.add('trash-button');
-    trashButton.addEventListener('click', () => {
-      removeBookFromCompleted(id);
-    });
+    trashButton.addEventListener('click', () => { removeBookFromCompleted(id) });
     wrapper.append(undoButton, trashButton);
   } else {
     const checkButton = document.createElement('button');
     checkButton.classList.add('check-button');
-    checkButton.addEventListener('click', () => {
-      addBookToCompleted(id);
-    });
-    wrapper.append(checkButton);
+    checkButton.addEventListener('click', () => { addBookToCompleted(id) });
+    
+    const editButton = document.createElement('button');
+    editButton.classList.add('edit-button');
+    editButton.addEventListener('click', () => { displayBookDetailsForEdit(id) });
+    wrapper.append(editButton, checkButton);
   }
   return wrapper;
 }
@@ -175,6 +173,89 @@ function addBook() {
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
 }
+
+// function editBook(bookId){
+//   const bookToEdit = findBook(bookId);
+
+//   if (bookToEdit == null){
+//       Swal.fire({
+//       title: 'Failed!',
+//       text: 'Book your search not found!',
+//       icon: 'error',
+//     });
+//   }
+
+//   const textTitle = document.getElementById('title').fetch;
+//   const textAuthor = document.getElementById('author').value;
+//   const numberSheet = document.getElementById('sheet').value;
+//   const numberYear = document.getElementById('year').value;
+//   const isComplete = document.getElementById('completeCheckbox').checked;
+
+//   bookToEdit.title = textTitle;
+//   bookToEdit.author = textAuthor;
+//   bookToEdit.sheet = numberSheet;
+//   bookToEdit.year = numberYear;
+//   bookToEdit.isComplete = isComplete;
+//   document.dispatchEvent(new Event(RENDER_EVENT));
+//   saveData();
+// };
+
+function clearFormFields() {
+  document.getElementById('title').value = '';
+  document.getElementById('author').value = '';
+  document.getElementById('sheet').value = '';
+  document.getElementById('year').value = '';
+  document.getElementById('completeCheckbox').checked = false;
+}
+
+function editBook(bookId) {
+  const textTitle = document.getElementById('title').value;
+  const textAuthor = document.getElementById('author').value;
+  const numberSheet = document.getElementById('sheet').value;
+  const numberYear = document.getElementById('year').value;
+  const isComplete = document.getElementById('completeCheckbox').checked;
+
+  const bookIndex = findBookIndex(bookId);
+  if (bookIndex !== -1) {
+    books[bookIndex] = {
+      ...books[bookIndex],
+      title: textTitle,
+      author: textAuthor,
+      sheet: numberSheet,
+      year: numberYear,
+      isComplete: isComplete,
+    };
+    saveData();
+    document.dispatchEvent(new Event(RENDER_EVENT));
+
+    // Clear the form fields
+    clearFormFields();
+    location.reload();
+  }
+}
+
+function displayBookDetailsForEdit(bookId) {
+  document.getElementById('title').value = '';
+  document.getElementById('author').value = '';
+  document.getElementById('sheet').value = '';
+  document.getElementById('year').value = '';
+  document.getElementById('completeCheckbox').checked = false;
+
+  const book = findBook(bookId);
+  if (book) {
+    document.getElementById('title').value = book.title;
+    document.getElementById('author').value = book.author;
+    document.getElementById('sheet').value = book.sheet;
+    document.getElementById('year').value = book.year;
+    document.getElementById('completeCheckbox').checked = book.isComplete;
+  } else {
+    // Tidak menemukan buku, lakukan sesuatu di sini jika perlu
+    alert('Book not found!');
+  }
+}
+
+
+
 
 /**
  * @function addBookComplete - this mean to add book when complete to section finished read
