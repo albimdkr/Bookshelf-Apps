@@ -406,7 +406,7 @@ main .container {
   border: 1px solid var(--primary);
 }
 
-#completeCheckbox .knobs:before {
+#wrapper-checkbox .knobs:before {
   content: "NO";
   position: absolute;
   top: 4px;
@@ -424,21 +424,21 @@ main .container {
   transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
 }
 
-#completeCheckbox .checkboxToggleSwitch:checked + .knobs:before {
+#wrapper-checkbox .checkboxToggleSwitch:checked + .knobs:before {
   content: "YES";
   color: var(--primary);
   left: 42px;
   background-color: var(--white);
 }
 
-#completeCheckbox .checkboxToggleSwitch:checked ~ .layer {
+#wrapper-checkbox .checkboxToggleSwitch:checked ~ .layer {
   background-color: var(--primary);
   border: 1px solid var(--white);
 }
 
-#completeCheckbox .knobs,
-#completeCheckbox .knobs:before,
-#completeCheckbox .layer {
+#wrapper-checkbox .knobs,
+#wrapper-checkbox .knobs:before,
+#wrapper-checkbox .layer {
   transition: 0.3s ease all;
 }
 
@@ -497,7 +497,7 @@ input[type=text], input[type=number], .btn-submit:focus {
     height: 40px;
     background: url('../img/finished-task-icon.svg');
     background-size: contain;
-    margin-left: auto;
+    margin-left: 16px;
     cursor: pointer;
     border: none;
 }
@@ -506,6 +506,16 @@ input[type=text], input[type=number], .btn-submit:focus {
     background: url('../assets/finished-task-icon');
     background-size: contain;
 } */
+
+.edit-button {
+    width: 40px;
+    height: 40px;
+    background: url('../img/edit-icon.svg');
+    background-size: contain;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+}
 
 .trash-button {
     width: 40px;
@@ -589,16 +599,6 @@ input[type=text], input[type=number], .btn-submit:focus {
     flex-grow: 1;
     height: fit-content;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /* FOOTER =================== */
