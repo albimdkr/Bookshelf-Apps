@@ -174,32 +174,6 @@ function addBook() {
   saveData();
 }
 
-// function editBook(bookId){
-//   const bookToEdit = findBook(bookId);
-
-//   if (bookToEdit == null){
-//       Swal.fire({
-//       title: 'Failed!',
-//       text: 'Book your search not found!',
-//       icon: 'error',
-//     });
-//   }
-
-//   const textTitle = document.getElementById('title').fetch;
-//   const textAuthor = document.getElementById('author').value;
-//   const numberSheet = document.getElementById('sheet').value;
-//   const numberYear = document.getElementById('year').value;
-//   const isComplete = document.getElementById('completeCheckbox').checked;
-
-//   bookToEdit.title = textTitle;
-//   bookToEdit.author = textAuthor;
-//   bookToEdit.sheet = numberSheet;
-//   bookToEdit.year = numberYear;
-//   bookToEdit.isComplete = isComplete;
-//   document.dispatchEvent(new Event(RENDER_EVENT));
-//   saveData();
-// };
-
 function clearFormFields() {
   document.getElementById('title').value = '';
   document.getElementById('author').value = '';
@@ -227,8 +201,6 @@ function editBook(bookId) {
     };
     saveData();
     document.dispatchEvent(new Event(RENDER_EVENT));
-
-    // Clear the form fields
     clearFormFields();
     location.reload();
   }
@@ -249,13 +221,63 @@ function displayBookDetailsForEdit(bookId) {
     document.getElementById('year').value = book.year;
     document.getElementById('completeCheckbox').checked = book.isComplete;
   } else {
-    // Tidak menemukan buku, lakukan sesuatu di sini jika perlu
     alert('Book not found!');
   }
 }
 
+const completeBooks = [];
+const booksContainer = document.getElementById('books');
+const completeBooksContainer = document.getElementById('complete-books');
 
+function displayAllBooks() {
+  booksContainer.innerHTML = '';
+  completeBooksContainer.innerHTML = '';
 
+  books.forEach((book) => {
+    const bookElement = makeBookItem(book);
+    booksContainer.appendChild(bookElement);
+  });
+
+  completeBooks.forEach((book) => {
+    const bookElement = makeBookItem(book);
+    completeBooksContainer.appendChild(bookElement);
+  });
+}
+
+function searchBook() {
+  const inputSearch = document.getElementById('search').value.toLowerCase().trim();
+  const matchedBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(inputSearch)
+  );
+  const matchedCompleteBooks = completeBooks.filter((book) =>
+    book.title.toLowerCase().includes(inputSearch)
+  );
+
+  booksContainer.innerHTML = '';
+  completeBooksContainer.innerHTML = '';
+  matchedBooks.forEach((book) => {
+    const bookElement = makeBookItem(book);
+    booksContainer.appendChild(bookElement);
+  });
+
+  matchedCompleteBooks.forEach((book) => {
+    const bookElement = makeBookItem(book);
+    completeBooksContainer.appendChild(bookElement);
+  });
+}
+
+const searchForm = document.getElementById('searchBook');
+searchForm.addEventListener('submit', function (event) {
+  event.preventDefault(); 
+  // Searching
+  const inputSearch = document.getElementById('search').value.toLowerCase();
+  if (inputSearch.trim() !== '') {
+    searchBook();
+  } else {
+    displayAllBooks(); 
+  }
+});
+displayAllBooks();
 
 /**
  * @function addBookComplete - this mean to add book when complete to section finished read
@@ -369,6 +391,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render Data From Local Storage
   isStorageExist() && loadDataFromStorage();
 });
+
+document.addEventListener(SAVED_EVENT, () => {
+  handleValidationSuccess('add book success!');
+});
+
+function handleValidationSuccess(messageSuccesed) {
+  Swal.fire({
+    title: 'Success',
+    text: messageSuccesed,
+    icon: 'success',
+  });
+}
 
 /**
  * COSTUME EVENT: @see {RENDER_EVENT}
